@@ -1,0 +1,63 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <h2 class="mb-4">Upload CSV File</h2>
+  <form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    <div class="form-group">
+      {{ form.as_p }}
+    </div>
+    <button type="submit" class="btn btn-primary">Upload</button>
+  </form>
+  {% if summary %}
+    <h3 class="mt-4">Summary Report</h3>
+    <div class="table-responsive">
+      <table class="table table-bordered">
+        <thead>
+          <tr>
+            <th>Total Data</th>
+            <th>Total Successfully Uploaded</th>
+            <th>Total Rejected</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>{{ summary.total_data }}</td>
+            <td>{{ summary.total_success }}</td>
+            <td>{{ summary.total_rejected }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    {% if summary.rejected_records %}
+      <h4 class="mt-4">Rejected Records:</h4>
+      <div class="table-responsive">
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Email</th>
+              <th>Phone Number</th>
+              <th>Gender</th>
+              <th>Address</th>
+              <th>Reason</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for row in summary.rejected_records %}
+              <tr>
+                <td>{{ row.row.name }}</td>
+                <td>{{ row.row.email }}</td>
+                <td>{{ row.row.phone_number }}</td>
+                <td>{{ row.row.gender }}</td>
+                <td>{{ row.row.address }}</td>
+                <td>{{ row.reason }}</td>
+              </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    {% endif %}
+  {% endif %}
+{% endblock %}
