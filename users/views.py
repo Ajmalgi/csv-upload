@@ -57,7 +57,6 @@ def format_errors(errors):
     return ", ".join(messages)
 
 def list_users(request):
-
     users = User.objects.all()
 
     if filter_name := request.GET.get('name', '').strip():
