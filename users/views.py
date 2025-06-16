@@ -23,12 +23,26 @@ def upload_csv(request):
             rejected_records = []
             total_data = 0
 
+            existing_emails = set(User.objects.values_list('email', flat=True))
+            csv_emails = set()
+
             for row in reader:
                 total_data += 1
+                email = row.get('email', '').strip()
+
+                if not email:
+                    rejected_records.append({'row': row, 'reason': 'Email is required.'})
+                    continue
+
+                if email in existing_emails or email in csv_emails:
+                    rejected_records.append({'row': row, 'reason': 'Email already exists'})
+                    continue
+
                 serializer = UserSerializer(data=row)
                 
                 if serializer.is_valid():
                     valid_records.append(User(**serializer.validated_data))
+                    csv_emails.add(email)
                 else:
                     error_msg = format_errors(serializer.errors)
                     rejected_records.append({'row': row, 'reason': error_msg})
