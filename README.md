@@ -34,3 +34,28 @@ Installation
 pip install -r requirements.txt
 python manage.py migrate
 python manage.py runserver
+
+
+
+
+Steps:
+
+Go to the URL: http://127.0.0.1:8000/
+
+Choose a sample CSV file (user-data.csv) provided in the Sample CSV-file/ folder.
+
+Click Upload.
+
+The app will:
+
+Validate each row
+
+Save valid records to the database
+
+Show a summary of total, successful, and rejected records
+
+click user_list nav button to see saved users
+
+
+for unit test run
+python manage.py test
