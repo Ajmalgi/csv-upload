@@ -1,0 +1,12 @@
+{
+    'total_data': 20,
+    'total_success': 16,
+    'total_rejected': 4,
+    'rejected_records': [
+        {'row': {'name': 'Ajmal', 'email': 'ajmal.kp@gmail.com', 'age': '25', 'phone_number': '9876543210', 'gender': 'Male', 'address': 'Kozhikode  '},
+        'reason': 'Email already exists'}, {'row': {'name': '', 'email': 'rahul.n@gmail.com', 'age': '29', 'phone_number': '9876541230', 'gender': 'Male', 'address': 'Alappuzha         '},
+        'reason': 'name: This field may not be blank.'}, {'row': {'name': 'Kiran', 'email': 'kiran@@gmail', 'age': '30', 'phone_number': '9545678901', 'gender': 'Male', 'address': 'Ernakulam             '},
+        'reason': 'email: Enter a valid email address.'}, {'row': {'name': 'Geethu', 'email': 'geethu.r@gmail.com', 'age': '130', 'phone_number': '9947012345', 'gender': 'Female', 'address': 'Kannur   '},
+        'reason': 'age: Age must be between 0 and 120.'}
+    ]
+}
